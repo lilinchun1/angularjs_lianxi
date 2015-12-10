@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            list-style-type: none;
+            width: 408px;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            float: left;
+            padding: 5px 0;
+        }
+
+        ul .odd {
+            color: #0026ff;
+        }
+
+        ul .even {
+            color: #ff0000;
+        }
+
+        ul .blod {
+            font-weight: bold;
+        }
+
+        ul li span {
+            width: 52px;
+            float: left;
+            padding: 0 10px;
+        }
+
+        ul .focus {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<!--
+    匹配过滤方式：是将字符参数与列表中的各个成员属性相匹配，如果包含该字符参数值，则显示该条列表记录。匹配时，不区分字符的大小写。
+
+    1、通过filter过滤器直接匹配包含字符参数的数据  {{ 数据 | filter: '匹配字符'}}
+
+    2、在字符参数中使用对象形式匹配指定属性的数据   {{ 数据 | 对象}}
+
+            {{ data | filter: {score:80} }}  //通过 key/value 方式声明名称和匹配的字符内容
+
+            {{ data | filter: {$:80} }}     // $ 表示在全部属性中查找
+
+    3、在字符参数中使用自定义函数匹配相应数据   {{ 数据 | filter: 函数名称 }}
+-->
+<div ng-controller="ctrl-1">
+    <ul>
+        <li ng-class="{{blod}}">
+            <span>序号</span>
+            <span>姓名</span>
+            <span>性别</span>
+            <span>年龄</span>
+            <span>分数</span>
+        </li>
+        <li ng-repeat="stu in data | filter: findscore"
+            ng-class-odd="'odd'"
+            ng-class-even="'even'"
+            ng-click="click_active($index)"
+            ng-class="{focus : $index == focus_nb}"
+        >
+            <span>{{$index + 1}}</span>
+            <span>{{stu.name}}</span>
+            <span>{{stu.sex}}</span>
+            <span>{{stu.age}}</span>
+            <span>{{stu.score}}</span>
+        </li>
+    </ul>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module('app', []);
+    app.controller('ctrl-1', [
+        '$scope',
+        function ($scope) {
+
+            $scope.blod = 'blod';
+
+            $scope.data = [
+                { name: "张明敏", sex: "女", age: 24, score: 95 },
+                { name: "李思青", sex: "女", age: 27, score: 87 },
+                { name: "刘晓华", sex: "男", age: 28, score: 86 },
+                { name: "刘晓华", sex: "男", age: 28, score: 88 },
+                { name: "陈忠忠", sex: "男", age: 23, score: 98 }
+            ];
+
+            $scope.click_active = function (i) {
+
+                $scope.focus_nb = i;
+
+            };
+
+            $scope.findscore = function (e) {
+
+                return e.score > 85 && e.score < 90;
+
+            }
+
+        }
+    ])
+</script>
+</body>
+</html>

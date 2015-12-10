@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            list-style-type: none;
+            width: 408px;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            float: left;
+            padding: 5px 0;
+        }
+
+        ul .odd {
+            color: #0026ff;
+        }
+
+        ul .even {
+            color: #ff0000;
+        }
+
+        ul .blod {
+            font-weight: bold;
+        }
+
+        ul li span {
+            width: 52px;
+            float: left;
+            padding: 0 10px;
+        }
+
+        ul .focus {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<!--
+    排序方式过滤：按指定的一个或多个对象属性名称进行数据过滤的，通过排序过滤器，不仅可以获取按照指定属性名称排序后的数据，而且还能通过过滤器设置数据返回时的记录总数量。
+
+    1.单个过滤器：    {{ 表达式 | 过滤器名 }}；
+
+    2.多个过滤器：    {{ 表达式 | 过滤器名1 | 过滤器名2 |...}}
+
+    3.带参数过滤器：  {{ 表达式 | 过滤器名1 : 参数1 : 参数2 :...}}
+-->
+<div ng-controller="ctrl-1">
+    <ul>
+        <li ng-class="{{blod}}">
+            <span>序号</span>
+            <span>姓名</span>
+            <span>性别</span>
+            <span>年龄</span>
+            <span>分数</span>
+        </li>
+        <li ng-repeat="stu in data | orderBy: '-score' | limitTo: 4"
+            ng-class-odd="'odd'"
+            ng-class-even="'even'"
+            ng-click="click_active($index)"
+            ng-class="{focus : $index == focus_nb}"
+        >
+            <span>{{$index + 1}}</span>
+            <span>{{stu.name}}</span>
+            <span>{{stu.sex}}</span>
+            <span>{{stu.age}}</span>
+            <span>{{stu.score}}</span>
+        </li>
+    </ul>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module('app', []);
+    app.controller('ctrl-1', [
+            '$scope',
+        function ($scope) {
+
+            $scope.blod = 'blod';
+
+            $scope.data = [
+                { name: "张明敏", sex: "女", age: 24, score: 95 },
+                { name: "李思青", sex: "女", age: 27, score: 87 },
+                { name: "刘晓华", sex: "男", age: 28, score: 86 },
+                { name: "陈忠忠", sex: "男", age: 23, score: 98 }
+            ];
+
+            $scope.click_active = function (i) {
+
+                $scope.focus_nb = i;
+
+            }
+
+        }
+    ])
+</script>
+</body>
+</html>

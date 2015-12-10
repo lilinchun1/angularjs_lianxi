@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            list-style-type: none;
+            width: 408px;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            float: left;
+            padding: 5px 0;
+        }
+
+        ul .odd {
+            color: #0026ff;
+        }
+
+        ul .even {
+            color: #ff0000;
+        }
+
+        ul .blod {
+            font-weight: bold;
+        }
+
+        ul li span {
+            width: 52px;
+            float: left;
+            padding: 0 10px;
+        }
+
+        ul .focus {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<!--
+    自定义过滤器：在页面模块中注册一个过滤器的构造方法，该方法将返回一个以输入值为首个参数的函数，在函数体重实现过滤器的功能。
+-->
+<div ng-controller="ctrl-1">
+    <ul>
+        <li ng-class="{{blod}}">
+            <span>序号</span>
+            <span>姓名</span>
+            <span>性别</span>
+            <span>年龄</span>
+            <span>分数</span>
+        </li>
+        <li ng-repeat="stu in data | young: 0"
+            ng-class-odd="'odd'"
+            ng-class-even="'even'"
+            ng-click="click_active($index)"
+            ng-class="{focus : $index == focus_nb}"
+        >
+            <span>{{$index + 1}}</span>
+            <span>{{stu.name}}</span>
+            <span>{{stu.sex}}</span>
+            <span>{{stu.age}}</span>
+            <span>{{stu.score}}</span>
+        </li>
+    </ul>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module('app', []);
+    app.controller('ctrl-1', [
+        '$scope',
+        function ($scope) {
+
+            $scope.blod = 'blod';
+
+            $scope.data = [
+                {name: "张明敏", sex: "女", age: 24, score: 95},
+                {name: "李思青", sex: "女", age: 27, score: 87},
+                {name: "刘晓华", sex: "男", age: 26, score: 86},
+                {name: "刘晓华", sex: "男", age: 24, score: 88},
+                {name: "张明敏", sex: "女", age: 24, score: 95},
+                {name: "李思青", sex: "女", age: 27, score: 87},
+                {name: "刘晓华", sex: "男", age: 26, score: 86},
+                {name: "刘晓华", sex: "男", age: 24, score: 88},
+                {name: "张明敏", sex: "女", age: 24, score: 95},
+                {name: "李思青", sex: "女", age: 27, score: 87},
+                {name: "刘晓华", sex: "男", age: 26, score: 86},
+                {name: "刘晓华", sex: "男", age: 24, score: 88},
+                {name: "陈忠忠", sex: "女", age: 23, score: 98}
+            ];
+
+            $scope.click_active = function (i) {
+
+                $scope.focus_nb = i;
+
+            };
+
+        }
+    ]);
+
+    app.filter('young', function () {
+
+        return function (e, type) { // e 在参数条用过滤器是，将会被需要过滤的数据自动注入。
+                                    // type 将会在调用过滤器时，通过冒号的形式向过滤器传递实参
+
+            var _out = [];
+            var _sex = type ? "男" : "女";
+
+            for (var i = 0; i < e.length; i++) {
+
+                if (e[i].age > 22 && e[i].age < 28 && e[i].sex == _sex) {
+
+                    _out.push(e[i]);
+
+                }
+
+            }
+            return _out;
+
+        }
+
+    });
+
+</script>
+</body>
+</html>
