@@ -70,7 +70,7 @@ function minErr(module, ErrorConstructor) {
 }
 
 /* We need to tell jshint what variables are being exported */
-/* global angular: true,
+/* global angular实战: true,
   msie: true,
   jqLite: true,
   jQuery: true,
@@ -385,7 +385,7 @@ function reverseParams(iteratorFn) {
 }
 
 /**
- * A consistent way of creating unique IDs in angular.
+ * A consistent way of creating unique IDs in angular实战.
  *
  * Using simple numbers allows us to generate 28.6 million unique ids per second for 10 years before
  * we hit number precision issues in JavaScript.
@@ -1931,7 +1931,7 @@ function setupModuleLoader(window) {
 
   var angular = ensure(window, 'angular', Object);
 
-  // We need to expose `angular.$$minErr` to modules such as `ngResource` that reference it during bootstrap
+  // We need to expose `angular实战.$$minErr` to modules such as `ngResource` that reference it during bootstrap
   angular.$$minErr = angular.$$minErr || minErr;
 
   return ensure(angular, 'module', function() {
@@ -2806,7 +2806,7 @@ function JQLite(element) {
   }
   if (!(this instanceof JQLite)) {
     if (argIsString && element.charAt(0) != '<') {
-      throw jqLiteMinErr('nosel', 'Looking up elements via selectors is not supported by jqLite! See: http://docs.angularjs.org/api/angular.element');
+      throw jqLiteMinErr('nosel', 'Looking up elements via selectors is not supported by jqLite! See: http://docs.angularjs.org/api/angular实战.element');
     }
     return new JQLite(element);
   }
@@ -4721,7 +4721,7 @@ function $AnchorScrollProvider() {
     var document = $window.document;
 
     // Helper function to get first anchor from a NodeList
-    // (using `Array#some()` instead of `angular#forEach()` since it's more performant
+    // (using `Array#some()` instead of `angular实战#forEach()` since it's more performant
     //  and working in all supported browsers.)
     function getFirstAnchor(list) {
       var result = null;
@@ -5738,7 +5738,7 @@ function Browser(window, document, $log, $sniffer) {
    * @description
    * Register callback function that will be called, when url changes.
    *
-   * It's only called when the url is changed from outside of angular:
+   * It's only called when the url is changed from outside of angular实战:
    * - user types different url into address bar
    * - user clicks on history (forward/back) button
    * - user clicks on a link
@@ -5748,7 +5748,7 @@ function Browser(window, document, $log, $sniffer) {
    * The listener gets called with new url as parameter.
    *
    * NOTE: this api is intended for use only by the $location service. Please use the
-   * {@link ng.$location $location service} to monitor url changes in angular apps.
+   * {@link ng.$location $location service} to monitor url changes in angular实战 apps.
    *
    * @param {function(string)} listener Listener function to be called when url changes.
    * @return {function(string)} Returns the registered listener fn - handy if the fn is anonymous.
@@ -8997,7 +8997,7 @@ function directiveNormalize(name) {
  */
 
 function nodesetLinkingFn(
-  /* angular.Scope */ scope,
+  /* angular实战.Scope */ scope,
   /* NodeList */ nodeList,
   /* Element */ rootElement,
   /* function(Function) */ boundTranscludeFn
@@ -9005,7 +9005,7 @@ function nodesetLinkingFn(
 
 function directiveLinkingFn(
   /* nodesetLinkingFn */ nodesetLinkingFn,
-  /* angular.Scope */ scope,
+  /* angular实战.Scope */ scope,
   /* Node */ node,
   /* Element */ rootElement,
   /* function(Function) */ boundTranscludeFn
@@ -11798,7 +11798,7 @@ var locationPrototype = {
    *
    * Return host of current url.
    *
-   * Note: compared to the non-angular version `location.host` which returns `hostname:port`, this returns the `hostname` portion only.
+   * Note: compared to the non-angular实战 version `location.host` which returns `hostname:port`, this returns the `hostname` portion only.
    *
    *
    * ```js
@@ -12260,7 +12260,7 @@ function $LocationProvider() {
 
       if (absHref && !elm.attr('target') && !event.isDefaultPrevented()) {
         if ($location.$$parseLinkUrl(absHref, relHref)) {
-          // We do a preventDefault for all urls that are part of the angular application,
+          // We do a preventDefault for all urls that are part of the angular实战 application,
           // in html5mode and also without, so that we are able to abort navigation without
           // getting double entries in the location history.
           event.preventDefault();
@@ -12559,7 +12559,7 @@ var $parseMinErr = minErr('$parse');
 // practice and therefore we are not even trying to protect against interaction with an object
 // explicitly exposed in this way.
 //
-// In general, it is not possible to access a Window object from an angular expression unless a
+// In general, it is not possible to access a Window object from an angular实战 expression unless a
 // window or some DOM object that has a reference to window is published onto a Scope.
 // Similarly we prevent invocations of function known to be dangerous, as well as assignments to
 // native objects.
@@ -14771,7 +14771,7 @@ function qFactory(nextTick, exceptionHandler) {
     }
   });
 
-  //Faster, more basic than angular.bind http://jsperf.com/angular-bind-vs-custom-vs-native
+  //Faster, more basic than angular实战.bind http://jsperf.com/angular-bind-vs-custom-vs-native
   function simpleBind(context, fn) {
     return function(value) {
       fn.call(context, value);
@@ -16040,7 +16040,7 @@ function $RootScopeProvider() {
            expect(scope.$eval(function(scope){ return scope.a + scope.b; })).toEqual(3);
        * ```
        *
-       * @param {(string|function())=} expression An angular expression to be executed.
+       * @param {(string|function())=} expression An angular实战 expression to be executed.
        *
        *    - `string`: execute using the rules as defined in  {@link guide/expression expression}.
        *    - `function(scope)`: execute the function with the current `scope` parameter.
@@ -16075,7 +16075,7 @@ function $RootScopeProvider() {
        * will be scheduled. However, it is encouraged to always call code that changes the model
        * from within an `$apply` call. That includes code evaluated via `$evalAsync`.
        *
-       * @param {(string|function())=} expression An angular expression to be executed.
+       * @param {(string|function())=} expression An angular实战 expression to be executed.
        *
        *    - `string`: execute using the rules as defined in {@link guide/expression expression}.
        *    - `function(scope)`: execute the function with the current `scope` parameter.
@@ -16106,9 +16106,9 @@ function $RootScopeProvider() {
        * @kind function
        *
        * @description
-       * `$apply()` is used to execute an expression in angular from outside of the angular
+       * `$apply()` is used to execute an expression in angular实战 from outside of the angular实战
        * framework. (For example from browser DOM events, setTimeout, XHR or third party libraries).
-       * Because we are calling into the angular framework we need to perform proper scope life
+       * Because we are calling into the angular实战 framework we need to perform proper scope life
        * cycle of {@link ng.$exceptionHandler exception handling},
        * {@link ng.$rootScope.Scope#$digest executing watches}.
        *
@@ -16138,7 +16138,7 @@ function $RootScopeProvider() {
        *    expression was executed using the {@link ng.$rootScope.Scope#$digest $digest()} method.
        *
        *
-       * @param {(string|function())=} exp An angular expression to be executed.
+       * @param {(string|function())=} exp An angular实战 expression to be executed.
        *
        *    - `string`: execute using the rules as defined in {@link guide/expression expression}.
        *    - `function(scope)`: execute the function with current `scope` parameter.
@@ -16177,7 +16177,7 @@ function $RootScopeProvider() {
        * This can be used to queue up multiple expressions which need to be evaluated in the same
        * digest.
        *
-       * @param {(string|function())=} exp An angular expression to be executed.
+       * @param {(string|function())=} exp An angular实战 expression to be executed.
        *
        *    - `string`: execute using the rules as defined in {@link guide/expression expression}.
        *    - `function(scope)`: execute the function with current `scope` parameter.
@@ -16804,7 +16804,7 @@ function $SceDelegateProvider() {
      * @name $sceDelegate#trustAs
      *
      * @description
-     * Returns an object that is trusted by angular for use in specified strict
+     * Returns an object that is trusted by angular实战 for use in specified strict
      * contextual escaping contexts (such as ng-bind-html, ng-include, any src
      * attribute interpolation, any dom event binding attribute interpolation
      * such as for onclick,  etc.) that uses the provided value.
@@ -18265,7 +18265,7 @@ function $FilterProvider($provide) {
    *    the keys are the filter names and the values are the filter factories.
    *
    *    <div class="alert alert-warning">
-   *    **Note:** Filter names must be valid angular {@link expression} identifiers, such as `uppercase` or `orderBy`.
+   *    **Note:** Filter names must be valid angular实战 {@link expression} identifiers, such as `uppercase` or `orderBy`.
    *    Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace
    *    your filters, then you can use capitalization (`myappSubsectionFilterx`) or underscores
    *    (`myapp_subsection_filterx`).
@@ -23583,7 +23583,7 @@ var ngControllerDirective = [function() {
  */
 /*
  * A collection of directives that allows creation of custom event handlers that are defined as
- * angular expressions and are compiled and executed within the current scope.
+ * angular实战 expressions and are compiled and executed within the current scope.
  */
 var ngEventDirectives = {};
 
@@ -28871,7 +28871,7 @@ var minlengthDirective = function() {
 
 if (window.angular.bootstrap) {
   //AngularJS is already loaded, so we can return here...
-  console.log('WARNING: Tried to load angular more than once.');
+  console.log('WARNING: Tried to load angular实战 more than once.');
   return;
 }
 
