@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    fn1();
+    //不会报错，对于通过function fn（）这种写法来电一的函数，永远都会被最先初始化
+    function fn1(){
+        alert('fn1');
+    }
+
+    fn2();
+    //使用如下方式定义函数，不会被先执行，如果在之前调用该函数就会报错。
+    /*
+    * 一下函数定义方式是先在内存中创建了一块区域，之后通过一个fn2的变量指向这快区域，这块区域的幻术开始是没有名称的，这种函数叫匿名函数
+    * */
+    var fn2 = function () {
+        alert('fn2');
+    }
+</script>
+</body>
+</html>

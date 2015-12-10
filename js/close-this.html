@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var name = 'window';
+    var person = {
+        name : 'zhangsan',
+        age : 23,
+        say : function () {
+            return function () {
+                return this.name;
+            }
+        }
+    };
+    /*
+    * 当完成person.say()之后，这个函数就调用结束了，在这个函数调用结束之前this是指向person，但是在调用匿名函数的时候，this就只想window，所以得到的结果是window
+    * */
+    alert(person.say()());  //window
+</script>
+</body>
+</html>

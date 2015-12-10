@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var name = 'window';
+    var person = {
+        name : 'zhangsan',
+        age : 23,
+        say : function () {
+            //that就是指向person
+            var that = this;
+            return function () {
+                return that.name;
+            }
+        }
+    };
+    /*
+    * 此时that是指向person的，所以调用that.name就是person中的name
+    * */
+    alert(person.say()());  //zhangsan
+</script>
+</body>
+</html>

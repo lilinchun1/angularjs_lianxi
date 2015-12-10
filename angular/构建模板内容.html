@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/ng-template" id="tplbase">
+    <p>姓名：{{name}}</p>
+    <p>邮箱：{{email}}</p>
+    {{url1}}
+</script>
+<div ng-include src="'tplbase'" ng-controller="c1-1">
+</div>
+<div ng-include="'tplbase'" ng-controller="c1-1">
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app', []);
+    apps.controller('c1-1', [
+            '$scope',
+        function ($scope) {
+            $scope.name = 'llc';
+            $scope.email = 'llc@163.com';
+            $scope.tplbase = 'tplbase';
+        }
+    ])
+</script>
+</body>
+</html>

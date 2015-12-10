@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 在js中当进行函数的调用，会为每一个函数增加一个属性scope，通过这个属性来指向一块内存
+    * 在这块内存中包含所有的上下文使用的变量，档在某个函数中调用了新函数之后，新函数依然会有一块作用域来执行原有的函数的scope和自己新增加的scope，这样就形成一个链式结构
+    * 这就是js中的作用域链
+    * */
+    var color = 'red';
+
+    var showColor = function () {
+        alert(this.color);
+    }
+
+    function changeColor(){
+        var anotherColor = 'blue';
+        function swapColor(){
+            var tempColor = anotherColor;
+            anotherColor = color;
+            color = tempColor;
+        }
+        swapColor();
+    }
+
+    changeColor();
+    showColor();
+</script>
+</body>
+</html>

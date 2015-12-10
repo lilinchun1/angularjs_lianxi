@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstController">
+        <p ng-bind="a"></p>
+        <p ng-bind="b"></p>
+    </div>
+    
+    <div ng-controller="two">
+       <p>
+           {{person[0].name}},{{person[0].age}}
+       </p>
+        <p>
+            {{person[1].name}},{{person[1].age}}
+        </p>
+    </div>
+    <ul ng-controller="two">
+        <li ng-repeat="p in person | orderBy : 'age'">
+            {{p.name}},{{p.age}}
+        </li>
+    </ul>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module('myApp',[]);
+
+    app.controller('firstController', function ($scope) {
+        $scope.a = 'llc';
+        $scope.b = 'ly';
+    });
+    
+    app.controller('two', function ($scope) {
+        $scope.person = [
+            {name : '张三', age : 25},
+            {name : '李四', age : 35},
+            {name : '张1', age : 15},
+            {name : '张2', age : 23},
+            {name : '张3', age : 65}
+        ]
+    })
+</script>
+</body>
+</html>

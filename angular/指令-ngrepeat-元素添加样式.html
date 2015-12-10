@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 16px;
+        }
+        div{
+            width: 900px;
+        }
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        ul li{
+            float: left;
+            padding: 5px 0;
+        }
+        ul li span{
+            width: 80px;
+            float: left;
+            padding: 0 10px;
+        }
+        ul .odd{
+            color: #0026ff;
+        }
+        ul .even{
+            color: #ff0000;
+        }
+        ul .bold{
+            font-weight: bold;
+        }
+        ul .focus1{
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="ctrl-1">
+    <ul>
+        <li ng-class="{{bold}}">
+            <span>序号</span>
+            <span>姓名</span>
+            <span>性别</span>
+            <span>是否首条</span>
+            <span>是否尾条</span>
+            <span>是否中间条</span>
+        </li>
+        <li ng-repeat="stu in data"
+            ng-class-odd="'odd'"
+            ng-class-even="'even'"
+            ng-click="li_click($index)"
+            ng-class="{focus1: $index == focus}">
+            <span>{{$index}}</span>
+            <span>{{stu.name}}</span>
+            <span>{{stu.sex}}</span>
+            <span>{{$first ? 'yes' : 'no'}}</span>
+            <span>{{$last ? 'yes' : 'no'}}</span>
+            <span>{{$middle ? 'yes' : 'no'}}</span>
+        </li>
+    </ul>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app1', []);
+    apps.controller('ctrl-1', [
+            '$scope',
+        function ($scope) {
+
+            $scope.data =[
+                {name: 'name1', sex: '女'},
+                {name: 'name2', sex: '男'},
+                {name: 'name3', sex: '女'},
+                {name: 'name4', sex: '男'},
+                {name: 'name5', sex: '男'}
+            ];
+
+            $scope.bold = 'bold';
+
+            $scope.li_click = function (i) {
+
+                $scope.focus = i;
+
+            }
+
+        }
+    ])
+</script>
+</body>
+</html>

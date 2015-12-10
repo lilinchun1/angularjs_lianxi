@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 在一个团队进行开发时，可能会涉及到定义同名的全局变量，所以在开发中一定养成如下习惯，将全局变量的代码放到一个匿名函数，并且马上调用匿名函数，这样也可以执行全局变量的代码，但是这些变量就被控制在开发人员想要控制的作用域中了。
+    * */
+    (function (){
+        for(var i=0; i<10; i++){
+
+        }
+        return i;
+    })();
+
+    function fn(){
+        alert(i);
+    }
+
+    fn();
+</script>
+</body>
+</html>

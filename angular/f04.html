@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="App">
+    <div ng-controller="a1">
+        {{name}}
+        {{age}}
+        <div ng-controller="a2">
+            {{name}}
+            {{age}}
+        </div>
+    </div>
+    {{sex}}
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module('App', []);
+
+    /*app.controller('a1', function ($scope, $rootScope) {
+     //$scope.name = 'llc';
+     $rootScope.age = 20;
+     });
+     */
+    app.controller('a1', ['$scope','$rootScope', function ($scope,$rootScope) {
+        $scope.name = 'llc1';
+        $rootScope.age = 22;
+    }]);
+
+
+    /*app.controller('a2', function ($scope) {
+        $scope.name = 'ly';
+    })*/
+    app.controller('a2',['$scope', function ($scope) {
+        $scope.name = 'ly1';
+    }])
+
+    app.run(['$rootScope', function ($rootScope) {
+        $rootScope.sex = 'nan';
+    }])
+</script>
+</body>
+</html>

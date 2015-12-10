@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="a1" ng-click="show();">
+        {{xingming}}
+        {{age}}
+    </div>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('a1',['$scope','$timeout', function ($scope,$timeout) {
+        setTimeout(function () {
+            $scope.$apply(function () {
+                $scope.xingming = '123'
+            })
+        },2000);
+
+        $scope.xingming = 'leon';
+
+        $scope.show = function () {
+            alert('1');
+            $scope.xingming = '点击改变';
+        };
+
+        $scope.age = 50;
+        $timeout(function () {
+            $scope.age = 100;
+        },2000)
+    }])
+</script>
+</body>
+</html>

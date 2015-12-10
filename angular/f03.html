@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+
+    </div>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module('myApp',[]);
+    
+    app.controller('myCtrl', function ($scope, $http) {
+        /*$http.get('data.php').success(function (data, status, headers, config) {
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            console.log(config);
+
+        }).error(function (data, status, headers, config) {
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            console.log(config);
+        });*/
+
+        var myUrl = 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=2&callback=JSON_CALLBACK';
+        $http.jsonp(myUrl).success(function (data) {
+            console.log(data)
+        }).error(function () {
+
+        })
+    })
+</script>
+</body>
+</html>

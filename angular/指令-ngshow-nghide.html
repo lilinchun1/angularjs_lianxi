@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="ctrl-1">
+    <div ng-show="{{isShow}}">llcly</div>
+    <div ng-hide="{{isHide}}">llcly@163.com</div>
+    <ul ng-switch on="{{switch}}">
+        <li ng-switch-when="1">llcly-1</li>
+        <li ng-switch-when="2">llcly@163.com-1</li>
+        <li ng-switch-default>more...</li>
+    </ul>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app1', []);
+    apps.controller('ctrl-1', [
+            '$scope',
+        function ($scope) {
+            $scope.isShow = true;
+            $scope.isHide = false;
+            $scope.switch = 1;
+        }
+    ])
+</script>
+</body>
+</html>

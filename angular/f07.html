@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="App">
+    <div ng-controller="a1">
+        {{a1}}
+        {{a2}}
+    </div>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module('App',[]);
+    app.controller('a1',[
+            '$scope',
+        function ($scope) {
+            $scope.a1 = angular.uppercase('aadfs');
+
+            var json1 = '{ "name" : "hello", "age" : 23, "sex" : "man" }';
+
+            var json2 = {
+                "name" : "llc",
+                "age" : 31,
+                "sex" : "nan"
+            };
+
+            var result = [];
+            angular.forEach(json2, function (val, key) {
+                this.push(key + ':' + val);
+            },result);
+
+            $scope.a2 = result;
+
+
+            console.log(
+                    angular.fromJson(json1)
+            )
+        }
+    ])
+</script>
+</body>
+</html>

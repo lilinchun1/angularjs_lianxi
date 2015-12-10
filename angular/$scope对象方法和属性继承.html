@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="ctrl-1">
+    <div ng-controller="ctrl-2">
+        <span>{{text}}</span><br>
+        <span>{{child_text}}</span>
+    </div>
+    <input type="button" value="show" ng-click="click_show()">
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app1', []);
+    apps.controller('ctrl-1', [
+            '$scope',
+        function ($scope) {
+            $scope.text = 'hellow';
+            $scope.click_show = function () {
+                $scope.text = 'dianji hellow le';
+
+            }
+        }
+    ])
+
+    apps.controller('ctrl-2', [
+        '$scope',
+        function ($scope) {
+            $scope.child_text = '111111';
+        }
+    ])
+</script>
+</body>
+</html>
