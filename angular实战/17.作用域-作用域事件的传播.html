@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app-1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .bgColor{
+            background-color: #ffff00;
+        }
+        .c1{
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="ctrl-1">
+    <p ng-class="{{bgColor}}">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At beatae consectetur cum facilis, harum hic labore laudantium libero maiores omnis quaerat repellat sequi ut. Architecto consectetur cum necessitatibus saepe tenetur.
+    </p>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app-1', []);
+    apps.controller('ctrl-1', [
+            '$scope',
+        function ($scope) {
+            $scope.bgColor = {c1:1};
+        }
+    ])
+</script>
+</body>
+</html>
