@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app-1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="ctrl-1">
+    <div>
+        <input type="text" placeholder="请输入内容" ng-model="txt">
+    </div>
+    <div>
+        累计变化次数：{{nb}}
+    </div>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app-1', []);
+    apps.controller('ctrl-1', [
+        '$scope',
+        function ($scope) {
+
+            $scope.nb = '';
+            $scope.txt = '';
+
+            $scope.$watch('txt', function () {
+
+                $scope.nb++;
+
+            })
+        }
+    ]);
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app-1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="ctrl-1">
+    <p>
+        <input type="text" ng-model="txt">
+    </p>
+
+    <p>
+        {{txt}}
+    </p>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app-1', []);
+    apps.controller('ctrl-1', [
+            '$scope',
+        function ($scope) {
+
+            $scope.txt = '';
+
+        }
+    ])
+</script>
+</body>
+</html>

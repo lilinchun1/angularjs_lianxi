@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app-1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            list-style-type: none;
+            width: 408px;
+            margin: 10px 0;
+            padding: 0;
+        }
+        ul .ng-scope{
+            background-color: #eeeeee;
+        }
+        ul .bg1{
+            background-color: #ff0000;
+        }
+        ul .bg2{
+            background-color: #ffff00;
+        }
+        ul li{
+            float: left;
+            padding: 5px 0;
+        }
+        ul .bold{
+            font-weight: bold;
+        }
+        ul .school{
+            float: right;
+            margin-right: 80px;
+        }
+        ul li span{
+            width: 52px;
+            float: left;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<!--
+    与DOM树状结构类似，作用域也有自己的层级，并且与DOM的树状结构相辅相成。
+    它的顶级作用域只有一个，而下面的子作用域可以创建多个，子级作用域可以
+    继承父级作用域中的全部属性和方法，但同级别子级作用域之间却不可以相互访问
+    各自的属性和方法。
+-->
+<div ng-controller="school">
+    <ul ng-controller="class-1">
+        <li ng-class="{{school}}">{{school_name}} {{class_name}}</li>
+        <li ng-class="{{bold}}">
+            <span>序号</span>
+            <span>姓名</span>
+            <span>性别</span>
+            <span>英语</span>
+            <span>数学</span>
+        </li>
+        <li ng-repeat="stu in data">
+            <span>{{$index + 1}}</span>
+            <span>{{stu.name}}</span>
+            <span>{{stu.sex}}</span>
+            <span>{{stu.english}}</span>
+            <span>{{stu.maths}}</span>
+        </li>
+    </ul>
+    <ul ng-controller="class-2">
+        <li ng-class="{{school}}">{{school_name}} {{class_name}}</li>
+        <li ng-class="{{bold}}">
+            <span>序号</span>
+            <span>姓名</span>
+            <span>性别</span>
+            <span>英语</span>
+            <span>数学</span>
+        </li>
+        <li ng-repeat="stu in data">
+            <span>{{$index + 1}}</span>
+            <span>{{stu.name}}</span>
+            <span>{{stu.sex}}</span>
+            <span>{{stu.english}}</span>
+            <span>{{stu.maths}}</span>
+        </li>
+    </ul>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app-1', []);
+    apps.controller('school', [
+            '$scope',
+        function ($scope) {
+
+            $scope.school_name = '实验小学';
+            $scope.bold = 'bold';
+            $scope.school = 'school';
+
+        }
+    ]);
+
+    apps.controller('class-1', [
+        '$scope',
+        function ($scope) {
+
+            $scope.class_name = '三年级一班';
+            $scope.data = [
+                { name: "刘晓华", sex: "女", english: 85, maths: 95},
+                { name: "李思青", sex: "男", english: 81, maths: 85}
+            ];
+
+        }
+    ]);
+
+    apps.controller('class-2', [
+        '$scope',
+        function ($scope) {
+
+            $scope.class_name = '三年级二班';
+            $scope.data = [
+                { name: "刘晓华", sex: "女", english: 81, maths: 92},
+                { name: "陈忠忠", sex: "男", english: 88, maths: 75}
+            ];
+
+
+        }
+    ]);
+</script>
+</body>
+</html>
