@@ -3,30 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        .bgColor{
-            background-color: #ffff00;
-        }
-        .c1{
-            background-color: #ff0000;
-        }
-    </style>
 </head>
 <body>
 <div ng-controller="ctrl-1">
-    <p ng-class="{{bgColor}}">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At beatae consectetur cum facilis, harum hic labore laudantium libero maiores omnis quaerat repellat sequi ut. Architecto consectetur cum necessitatibus saepe tenetur.
-    </p>
+    <div ng-controller="ctrl1-2">
+        <button>向父级传播</button>
+        <button>向子级传播</button>
+        <div ng-controller="ctrl-3"></div>
+    </div>
+    <div ng-controller="ctrl-4"></div>
 </div>
 <script src="../js/angular.js"></script>
 <script>
     var apps = angular.module('app-1', []);
+    apps.controller('ctrl-2', [
+            '$scope',
+        function ($scope) {
+            
+            $scope.to_Parent = function () {
+                $scope.$emit('event_1', '事件来源于子级');
+            };
+            
+            $scope.to_child = function () {
+                $scope.$broadcast('event_2', '事件来源于父级');
+            }
+        }
+    ]);
+    
     apps.controller('ctrl-1', [
             '$scope',
         function ($scope) {
-            $scope.bgColor = {c1:1};
+            
         }
-    ])
+    ]);
 </script>
 </body>
 </html>
