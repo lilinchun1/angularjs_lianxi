@@ -6,9 +6,9 @@
 </head>
 <body>
 <div ng-controller="ctrl-1">
-    <div ng-controller="ctrl1-2">
-        <button>向父级传播</button>
-        <button>向子级传播</button>
+    <div ng-controller="ctrl-2">
+        <button ng-click="to_Parent()">向父级传播</button>
+        <button ng-click="to_child()">向子级传播</button>
         <div ng-controller="ctrl-3"></div>
     </div>
     <div ng-controller="ctrl-4"></div>
@@ -17,23 +17,55 @@
 <script>
     var apps = angular.module('app-1', []);
     apps.controller('ctrl-2', [
-            '$scope',
+        '$scope',
         function ($scope) {
-            
+
             $scope.to_Parent = function () {
                 $scope.$emit('event_1', '事件来源于子级');
             };
-            
+
             $scope.to_child = function () {
                 $scope.$broadcast('event_2', '事件来源于父级');
             }
         }
     ]);
-    
+
     apps.controller('ctrl-1', [
-            '$scope',
+        '$scope',
         function ($scope) {
-            
+            $scope.$on('event_1', function (event, data) {
+                console.log('在父级监听到', data);
+            });
+
+            $scope.$on('event_2', function (event, data) {
+                console.log('在父级监听到', data);
+            })
+        }
+    ]);
+
+    apps.controller('ctrl-3', [
+        '$scope',
+        function ($scope) {
+            $scope.$on('event_1', function (event, data) {
+                console.log('在子级监听到', data);
+            });
+
+            $scope.$on('event_2', function (event, data) {
+                console.log('在子级监听到', data);
+            })
+        }
+    ]);
+
+    apps.controller('ctrl-4', [
+        '$scope',
+        function ($scope) {
+            $scope.$on('event_1', function (event, data) {
+                console.log('在同级监听到', data);
+            });
+
+            $scope.$on('event_2', function (event, data) {
+                console.log('在同级监听到', data);
+            })
         }
     ]);
 </script>

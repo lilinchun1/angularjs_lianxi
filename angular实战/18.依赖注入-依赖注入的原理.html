@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app-1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show{
+            margin: 10px 0;
+            width: 260px;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="c-1">
+    <div class="{{cls}}">{{show}}</div>
+    <button ng-click="onClick()">点我</button>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app-1', []);
+
+    apps.config(function ($controllerProvider) {
+        $controllerProvider.register('c-1', [
+                '$scope',
+            function ($scope) {
+                $scope.cls = '';
+                $scope.onClick = function () {
+                    $scope.cls = 'show';
+                    $scope.show = 'dianjihouxianshideneirong';
+                }
+            }
+        ])
+    })
+</script>
+</body>
+</html>

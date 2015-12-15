@@ -6,11 +6,12 @@
 </head>
 <body>
 <script>
-    /*
-    * 1、内置对象 ： Object，Function
-    * 2、Prototype
-    * 3、上下文Context
-    * */
+    var k = 1000;
+    var g = 0;
+    for(var i=0; i<200; i++){
+        g = k * 0.01;
+    }
+    alert(g);
 </script>
 </body>
 </html>
