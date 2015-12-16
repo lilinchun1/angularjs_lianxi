@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show{
+            margin: 10px 0;
+            padding: 8px;
+            width: 260px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="c1">
+    <div class="show">
+        {{name_a + ' / ' + name_b + ' / ' + name_c + score}}
+    </div>
+    <div ng-controller="c1-1">
+        <div class="show">
+            {{name_a + ' / ' + name_b + ' / ' + name_c + score}}
+        </div>
+        <div ng-controller="c1-1-1">
+            <div class="show">
+                {{name_a + ' / ' + name_b + ' / ' + name_c  + ' / ' + score}}
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('a1', []);
+
+    apps.controller('c1', [
+            '$scope',
+        function ($scope) {
+            $scope.name_a = '张三';
+            $scope.score = 60;
+        }
+    ]);
+
+    apps.controller('c1-1', [
+        '$scope',
+        function ($scope) {
+            $scope.name_b = '李四';
+            $scope.score = 70;
+        }
+    ]);
+
+    apps.controller('c1-1-1', [
+        '$scope',
+        function ($scope) {
+            $scope.name_c = '王五';
+            $scope.score = 80;
+        }
+    ]);
+</script>
+</body>
+</html>

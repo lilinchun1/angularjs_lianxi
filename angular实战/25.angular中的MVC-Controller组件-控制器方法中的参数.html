@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a-1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show {
+            margin: 10px 0;
+            padding: 8px;
+            width: 260px;
+            background-color: #cccccc;
+        }
+
+        input {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="c-1">
+    <div class="show">
+        <input type="text" ng-model="a">
+        <span>{{type}}</span>
+        <input type="text" ng-model="b">
+        <span>=</span>
+        <span class="show">{{result}}</span>
+    </div>
+    <div class="show">
+        <button ng-click="change(1)">加法</button>
+        <button ng-click="change(0)">乘法</button>
+    </div>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('a-1', []);
+    apps.controller('c-1', [
+            '$scope',
+        function ($scope) {
+            $scope.type = '+';
+            $scope.change = function (t) {
+                if(t){
+                    $scope.type = '+';
+                    $scope.result = parseFloat($scope.a) + parseFloat($scope.b);
+                }else{
+                    $scope.type = '*';
+                    $scope.result = $scope.a * $scope.b;
+                }
+            }
+        }
+    ])
+</script>
+</body>
+</html>

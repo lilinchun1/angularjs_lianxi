@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="c1">
+
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('a1', [])
+            .factory('$custom', function () {
+                return {
+                    print: function (msg) {
+                        console.log(msg);
+                    }
+                };
+            });
+    var injector = angular.injector(['a1', 'ng']);
+    var has = injector.has('$custom');
+    
+    console.log(has);
+    
+    if(has){
+        var custom = injector.get('$custom');
+        custom.print('控制台输出任意内容');
+    }
+    
+    apps.controller('c1', [
+            '$scope', '$custom',
+        function ($scope, $ustom) {
+
+        }
+    ]);
+    
+</script>
+</body>
+</html>

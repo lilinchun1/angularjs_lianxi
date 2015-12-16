@@ -6,12 +6,82 @@
 </head>
 <body>
 <script>
-    var k = 1000;
-    var g = 0;
-    for(var i=0; i<200; i++){
-        g = k * 0.01;
+    /*
+    * 1、内置对象 ： Object，Function
+    * 2、Prototype
+    * 3、上下文Context
+    * */
+
+    /*
+    * Array 其实是一个Function类型的对象，它的prototype 是指向了Function.prototype。
+    *
+    * new Array() 这是一个Object对象， 它的prototype是指向了Object.prototype
+    * */
+
+    /*
+    * 对象的创建方式 一：
+    *   问题是不能重用
+    * */
+    //var obj1 = {name: 'laozhang'};
+
+    /*
+    * 对象的创建方式 二：
+    *   function就是一个对象
+    * */
+    /*var Dog = function () {
+        this.name = 'wangcai';
+    };
+
+    var d = new Dog();
+    alert(d.name);  //wangcai
+    var d1 = d;
+    alert(d1.name); //wangcai
+    d1.name = 'xiaoqiang';
+    alert(d.name);  //xiaoqiang*/
+
+
+    /*
+    * 函数的定义方式：
+    *
+    *   此处的sum是Function， 不是Object
+    *
+    *   var s = new sum();这个时候s就表示是一个Object
+    *
+    *   对于Function的创建其实也都是通过内部的构造函数创建的，就等于调用了new Function这个方法来创建。
+    * */
+    /*function sum1(a, b){
+        return a + b;
     }
-    alert(g);
+
+    var sum2 = function (a, b) {
+        return a + b;
+    };
+
+    var sum3 = new Function("a", "b", "return a+b");    // 等同于 function(a,b){return a+b};
+    alert(sum3(12,22))*/
+
+
+
+
+    var sum1 = function (a, b) {
+        return a+b;
+    };
+
+    //以上等同于 var sum1 = new Function("a", "b", "return a+b");
+
+    var sum2 = sum1;
+
+    //alert(sum2(2,3)); //5
+
+    sum2 = function (a) {
+        alert(a);
+    };
+    //以上等同于 var sum2 = new Function("a", "alert(a)");
+
+    /*
+    * 虽然sum2的引用变了， 但是sum1没有指向sum2的引用
+    * */
+    sum1(2);    //
 </script>
 </body>
 </html>

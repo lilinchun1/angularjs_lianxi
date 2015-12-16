@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var Person = function (name) {
+        this.name = name;
+    };
+    Person.prototype.say = function () {
+        alert(this.name);
+    };
+
+    var p = new Person('xiaoli');
+    p.say = function () {   //等同于 new Function
+        alert('ok');
+    };
+    p.say();
+
+    var p2 = new Person('xiaozhang');
+    p2.say();*/
+
+
+    var Person = function (name) {
+        this.name = name;
+    };
+    //等同于 var Person = new Function();  Person就是
+
+    //以上操作以后
+    //隐式的完成操作
+    // Person.prototype = new Object();
+
+
+    var p = new Person('laowang');
+
+</script>
+</body>
+</html>

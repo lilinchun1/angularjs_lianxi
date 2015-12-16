@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show{
+            margin: 10px 0;
+            width: 260px;
+            padding: 8px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="ctrl1">
+    <p ng-repeat="stu in data" class="show">
+        <span>{{stu.name}}</span>
+        <span>{{stu.sex}}</span>
+    </p>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app1', []);
+    apps.controller('ctrl1', [
+            '$scope',
+        function ($scope) {
+            $scope.data = [
+                {name: "张明敏", sex: "女"},
+                {name: "李思青", sex: "女"},
+                {name: "刘晓华", sex: "男"},
+                {name: "陈忠忠", sex: "男"}
+            ]
+        }
+    ])
+</script>
+</body>
+</html>

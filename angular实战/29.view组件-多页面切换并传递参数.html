@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a-1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show{
+            margin: 10px 0;
+            padding: 8px;
+            width: 260px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div ng-view></div>
+<script src="../js/angular.js"></script>
+<script src="../js/angular-route.js"></script>
+<script>
+    var apps = angular.module('a-1', ['ngRoute']);
+
+    var students = [
+        {stuId: 1000, name: "张明明", sex: "女", score: 60},
+        {stuId: 1001, name: "李思青", sex: "女", score: 80},
+        {stuId: 1002, name: "刘晓华", sex: "男", score: 90},
+        {stuId: 1003, name: "陈忠忠", sex: "男", score: 70}
+    ];
+
+    apps.controller('ctrl-1', [
+            '$scope',
+        function ($scope) {
+            $scope.students = students;
+        }
+    ]);
+
+    apps.controller('ctrl-2', [
+            '$scope', '$routeParams',
+        function ($scope, $routeParams) {
+            for(var i = 0; i < students.length; i++){
+                if(students[i].stuId == $routeParams.id){
+                    $scope.students = students[i];
+                    console.log($routeParams.id);
+                    break;
+                }
+            }
+        }
+    ]);
+
+    apps.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+                .when('/', {
+                    controller: 'ctrl-1',
+                    templateUrl: '29.view-temp1.html'
+                })
+                .when('/view/:id', {
+                    controller: 'ctrl-2',
+                    templateUrl: '29.view-temp2.html',
+                    publicAccess: true
+                })
+                .otherwise({
+                    redirectTo: '/'
+                })
+    }])
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show{
+            background-color: #cccccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>/
+<div ng-controller="ctr1">
+    <div class="show">{{name}}</div>
+    <input ng-model="score" type="text">
+    <div class="show">{{score}}</div>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app1', []);
+    apps.controller('ctr1', [
+            '$scope',
+        function ($scope) {
+            $scope.name = 'zhangsan';
+        }
+    ])
+</script>
+</body>
+</html>

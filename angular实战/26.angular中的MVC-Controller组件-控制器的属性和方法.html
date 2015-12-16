@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show{
+            margin: 10px 0;
+            padding: 8px;
+            width: 260px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="c1">
+    <button ng-click="changeA()">李四</button>
+    <button ng-click="changeB()">王二</button>
+    <p class="show">我的名字叫：{{name}}</p>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var apps = angular.module('app1', []);
+    apps.controller('c1', [
+            '$scope',
+        function ($scope) {
+            $scope.name = '张三';
+            $scope.changeA = function () {
+                $scope.name = '李四';
+            };
+            $scope.changeB = function () {
+                $scope.name = '王二';
+            };
+        }
+    ])
+</script>
+</body>
+</html>
