@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show {
+            margin: 10px 0;
+            padding: 8px;
+            width: 260px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="c1">
+    <div class="show">{{str('我是服务返回的内容')}}</div>
+    <div class="show">{{name(1)}}</div>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    angular.module('a1', [])
+            .factory('$outfun', function () {
+                return {
+                    str: function (s) {
+                        return s
+                    }
+                };
+            })
+            .factory('$outarr', function () {
+                return ['zhangsan', 'lisi', 'waner']
+            })
+            .controller('c1', [
+                '$scope', '$outfun', '$outarr',
+                function ($scope, $outfun, $outarr) {
+                    $scope.str = function (n) {
+                        return $outfun.str(n);
+                    };
+                    $scope.name = function (n) {
+                        return $outarr[n];
+                    }
+                }
+            ])
+</script>
+</body>
+</html>
