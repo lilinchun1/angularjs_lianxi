@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a-1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show {
+            margin: 10px 0;
+            padding: 8px;
+            width: 260px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="c-1">
+    <div class="show">编号：{{stu.code}}</div>
+    <div class="show">姓名：{{stu.name}}</div>
+    <div class="show">分数：{{stu.score}}</div>
+    <button ng-click="reset()">重置</button>
+</div>
+<div ng-controller="c-2">
+    <div class="show">编号：{{stu.code}}</div>
+    <div class="show">姓名：{{stu.name}}</div>
+    <div class="show">分数：{{stu.score}}</div>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    function student(json) {
+        angular.extend(this, json);
+        this.reset = function () {
+            this.code = 1000;
+            this.name = 'zhangsan';
+            this.score = 0;
+        }
+    }
+
+    student.create = function () {
+        return new student(
+                {
+                    code: 1001,
+                    name: 'wangxinpeng',
+                    score: 98
+                }
+        )
+    };
+
+    angular.module('a-1', [])
+            .factory('$student', function () {
+                return {
+                    create: student.create
+                }
+            })
+            .controller('c-1', [
+                '$scope', '$student',
+                function ($scope, $student) {
+                    console.log($student.create)
+                    $scope.stu = $student.create();
+                    $scope.reset = function () {
+                        $scope.stu.reset();
+                    }
+                }
+            ])
+            .controller('c-2', [
+                '$scope', '$student',
+                function ($scope, $student) {
+                    $scope.stu = $student.create();
+                }
+            ])
+</script>
+</body>
+</html>

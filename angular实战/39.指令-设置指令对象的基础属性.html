@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .fram{
+            padding: 2px 8px;
+            width: 320px;
+            background-color: #eeeeee;
+        }
+    </style>
+</head>
+<body>
+<div class="fram">
+    <llc-tmp1></llc-tmp1>
+    <llc-tmp2></llc-tmp2>
+    <llc-tmp3></llc-tmp3>
+</div>
+<script src="../js/angular.js"></script>
+<script type="text/ng-template" id="tpl1">
+    <h3>模板内容来源于script元素</h3>
+</script>
+<script>
+    var app = angular.module('a1', [])
+            .run(function ($templateCache) {
+                $templateCache.put(
+                        'cache',
+                        '<h3>模板内容来源于缓存</h3>'
+                )
+            })
+            .directive('llcTmp1', function () {
+                return {
+                    restrict: 'EAC',
+                    templateUrl: '39.tpl.html'
+                }
+            })
+            .directive('llcTmp2', function () {
+                return {
+                    restrict: 'EAC',
+                    templateUrl: 'tpl1',
+                    replace: true
+                }
+            })
+            .directive('llcTmp3', function () {
+                return {
+                    restrict: "EAC",
+                    templateUrl: 'cache'
+                }
+
+            })
+</script>
+</body>
+</html>

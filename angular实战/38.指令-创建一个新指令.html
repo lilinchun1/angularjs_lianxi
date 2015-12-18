@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    .fram{
+        padding: 2px 8px;
+        width: 320px;
+        background-color: #eeeeee;
+    }
+    </style>
+</head>
+<body>
+<div class="fram">
+    <llc-temp1></llc-temp1>
+    <div llc-temp1=""></div>
+    <div class="llc-temp1"></div>
+    <div data-llc-temp1></div>
+    <span llc-temp1></span>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module('a1', []);
+    app.directive('llcTemp1', function () {
+        return {
+            restrict: 'EAC',
+            template: '<h3>hello, angular</h3>'
+        }
+    })
+</script>
+</body>
+</html>
