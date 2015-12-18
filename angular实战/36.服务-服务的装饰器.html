@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show {
+            margin: 10px 0;
+            padding: 8px;
+            width: 260px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="c1">
+    <div class="show">姓名：{{name}}</div>
+    <div class="show">邮件：{{email}}</div>
+    <div class="show">{{title}}</div>
+    <div class="show">{{sy}}</div>
+    <button ng-click="say()">主题</button>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    angular.module('a1', [])
+            .service('$student', function () {
+                this.name = 'taoguorong';
+                this.email = 'taoguorong@163.com';
+                this.say = function () {
+                    return 'hello angular';
+                }
+            })
+            .config(function ($provide) {
+                $provide.decorator('$student',
+                        function ($delegate) {
+                            $delegate.sy = 'daibiaotianjia';
+                            return $delegate;
+                        }
+                )
+            })
+            .controller('c1', [
+                '$scope', '$student',
+                function ($scope, $student) {
+                    $scope.name = $student.name;
+                    $scope.email = $student.email;
+                    $scope.sy = $student.sy;
+                    $scope.say = function () {
+                        $scope.title = $student.say();
+                    }
+                }
+            ])
+</script>
+</body>
+</html>

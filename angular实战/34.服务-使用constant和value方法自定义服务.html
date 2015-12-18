@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .show {
+            margin: 10px 0;
+            padding: 8px;
+            width: 260px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="c1">
+    <div class="show">图书号：{{book}}</div>
+    <div class="show">美元兑换价：{{usd}}</div>
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    angular.module('a1', [])
+            .constant('$ISBN', {
+                book: '21312342352'
+            })
+            .value('$RATE', {
+                usd: 61.28
+            })
+            .controller('c1', [
+                    '$scope', '$ISBN', '$RATE',
+                function ($scope, $ISBN, $RATE) {
+                    var n = 660;
+                    angular.extend($RATE, {usd:n});
+                    $scope.book = $ISBN.book;
+                    $scope.usd = $RATE.usd;
+                }
+            ])
+</script>
+</body>
+</html>
