@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .frame{
+            padding: 2px 8px;
+            margin: 0;
+            width: 320px;
+            background-color: #eeeeee;
+        }
+        .tip{
+            font-size: 10px;
+            color: #666666;
+            margin: 3px 5px;
+        }
+    </style>
+</head>
+<body>
+<script type="text/ng-template" id="tpl1">
+    <div class="frame">
+        <input type="text" ng-model="text">
+        <div ng-transclude class="tip"></div>
+    </div>
+</script>
+<llc-tmp>{{text}}</llc-tmp>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module('a1', [])
+            .directive('llcTmp', function () {
+                return{
+                    restrict: "EAC",
+                    templateUrl: 'tpl1',
+                    transclude: true
+                }
+            })
+</script>
+</body>
+</html>
