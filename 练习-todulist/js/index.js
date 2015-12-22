@@ -8,33 +8,32 @@ window.onload = function () {
 
 
 var data = {
-    "Lidata":
-    [
+    "Lidata": [
         {
             ckbox: true,
             txt: '11111111111',
-            id: 1
+            id: 0
         },
         {
             ckbox: true,
             txt: '22222222222',
-            id: 2
+            id: 1
         },
         {
             ckbox: false,
             txt: '33333333333',
-            id: 3
+            id: 2
         },
         {
             ckbox: false,
             txt: '4444444444',
-            id: 4
+            id: 3
         }
     ]
 };
 
 /*显示列表*/
-function showList(){
+function showList() {
 
     var dList = document.getElementById('j_doing');
     var fList = document.getElementById('j_finish');
@@ -42,82 +41,64 @@ function showList(){
     var arrA = [];
     var arrB = [];
 
-    for(var i = 0; i < data.Lidata.length; i++){
+    for (var i = 0; i < data.Lidata.length; i++) {
 
-        if(data.Lidata[i].ckbox){
+        if (data.Lidata[i].ckbox) {
             arrB.push(data.Lidata[i]);
-        }else{
+        } else {
             arrA.push(data.Lidata[i]);
         }
 
     }
 
-    for(var i = 0; i < arrA.length; i++){
+    cIn(arrA, dList);
+    cIn(arrB, fList);
 
-        var aLi = document.createElement('li');
-        var aCkbox = document.createElement('input');
-        aCkbox.type = 'checkbox';
-        aCkbox.checked = arrA[i]['ckbox'];
-        aLi.appendChild(aCkbox);
-        var aP = document.createElement('p');
-        aP.innerText = arrA[i]['txt'];
-        aLi.appendChild(aP);
-        var aBtn = document.createElement('a');
-        aBtn.innerText = 'x';
-        aLi.appendChild(aBtn);
-        dList.appendChild(aLi);
-    }
-
-    for(var i = 0; i < arrB.length; i++){
-
-        var aLi = document.createElement('li');
-        var aCkbox = document.createElement('input');
-        aCkbox.type = 'checkbox';
-        aCkbox.checked = arrB[i]['ckbox'];
-        aLi.appendChild(aCkbox);
-        var aP = document.createElement('p');
-        aP.innerText = arrB[i]['txt'];
-        aLi.appendChild(aP);
-        var aBtn = document.createElement('a');
-        aBtn.innerText = 'x';
-        aLi.appendChild(aBtn);
-        fList.appendChild(aLi);
-    }
+    deleteLi();
 
 }
 
 /*插入*/
-function cIn(){
+function cIn(attr, cont) {
 
-    var aLi = document.createElement('li');
-    var aCkbox = document.createElement('input');
-    aCkbox.type = 'checkbox';
-    aCkbox.checked = arrB[i]['ckbox'];
-    aLi.appendChild(aCkbox);
-    var aP = document.createElement('p');
-    aP.innerText = arrB[i]['txt'];
-    aLi.appendChild(aP);
-    var aBtn = document.createElement('a');
-    aBtn.innerText = 'x';
-    aLi.appendChild(aBtn);
-    fList.appendChild(aLi);
+    for (var i = 0; i < attr.length; i++) {
+        var aLi = document.createElement('li');
+
+        if(data.Lidata == false){
+            aLi.datase.id = 0;
+        }else{
+            aLi.dataset.id = attr[i]['id'];
+        }
+
+        var aCkbox = document.createElement('input');
+        aCkbox.type = 'checkbox';
+        aCkbox.checked = attr[i]['ckbox'];
+        aLi.appendChild(aCkbox);
+        var aP = document.createElement('p');
+        aP.innerText = attr[i]['txt'];
+        aLi.appendChild(aP);
+        var aBtn = document.createElement('a');
+        aBtn.innerText = 'x';
+        aLi.appendChild(aBtn);
+        cont.appendChild(aLi);
+    }
 
 }
 
 /*添加列表*/
-function addList(){
+function addList() {
     var dList = document.getElementById('j_doing');
     var fList = document.getElementById('j_finish');
     var inputs = selectElement('head', 'input');
 
     inputs[0].onclick = function () {
 
-        if(inputs[1].value != ''){
+        if (inputs[1].value != '') {
 
             var lastId = 0;
             var tt = inputs[1].value;
 
-            if(data.Lidata == false){
+            if (data.Lidata == false) {
                 data.Lidata.push(
                     {
                         ckbox: false,
@@ -125,7 +106,7 @@ function addList(){
                         id: lastId
                     }
                 )
-            }else{
+            } else {
                 var lastId = data.Lidata[data.Lidata.length - 1]['id'];
                 data.Lidata.push(
                     {
@@ -136,32 +117,50 @@ function addList(){
                 )
             }
 
-
         }
+
         dList.innerHTML = '';
         fList.innerHTML = '';
         showList();
-        console.log(lastId);
 
     }
 }
 
 /*改变状态*/
-function changeStatus(){
+function changeStatus() {
 
 }
 
+/*删除li*/
+function deleteLi(){
+
+    var allLi = selectElement('content', 'li');
+
+    for(var i = 0; i < allLi.length; i++){
+        allLi[i].onclick = function () {
+            var ckId = this.dataset.id;
+            data.Lidata.forEach(function (value, index, attr) {
+                if(value.id == ckId){
+                    /*todo*/
+                    console.log(index)
+                }
+            })
+
+        }
+    }
+
+}
 
 /*获取元素*/
-function selectElement(fid, cname){
+function selectElement(fid, cname) {
 
     var fElement = document.getElementById(fid);
     var allElement = fElement.getElementsByTagName('*');
     var eleAttr = [];
 
-    for(var i = 0; i < allElement.length; i++){
+    for (var i = 0; i < allElement.length; i++) {
 
-        if(allElement[i].tagName == cname.toUpperCase()){
+        if (allElement[i].tagName == cname.toUpperCase()) {
             eleAttr.push(allElement[i]);
         }
 

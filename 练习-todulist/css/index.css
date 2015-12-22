@@ -53,6 +53,8 @@ section{
     margin: 20px 0 20px 0;
 }
 #content li{
+    position: relative;
+    z-index: 1;
     padding: 0 10px;
     margin-bottom: 10px;
     height: 30px;
@@ -69,8 +71,12 @@ section{
     display: inline-block;
 }
 #content li a{
-    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
     cursor: pointer;
+    padding: 0 10px;
 }
 
 .doing li{
