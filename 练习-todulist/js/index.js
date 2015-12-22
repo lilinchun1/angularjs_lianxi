@@ -53,15 +53,14 @@ function showList() {
 
     cIn(arrA, dList);
     cIn(arrB, fList);
-
-    deleteLi();
-
+    click_xbtn();
 }
 
 /*插入*/
 function cIn(attr, cont) {
 
     for (var i = 0; i < attr.length; i++) {
+
         var aLi = document.createElement('li');
 
         if(data.Lidata == false){
@@ -81,12 +80,14 @@ function cIn(attr, cont) {
         aBtn.innerText = 'x';
         aLi.appendChild(aBtn);
         cont.appendChild(aLi);
+
     }
 
 }
 
 /*添加列表*/
 function addList() {
+
     var dList = document.getElementById('j_doing');
     var fList = document.getElementById('j_finish');
     var inputs = selectElement('head', 'input');
@@ -106,6 +107,7 @@ function addList() {
                         id: lastId
                     }
                 )
+
             } else {
                 var lastId = data.Lidata[data.Lidata.length - 1]['id'];
                 data.Lidata.push(
@@ -131,25 +133,44 @@ function changeStatus() {
 
 }
 
-/*删除li*/
-function deleteLi(){
+/*点击x按钮删除li*/
+function click_xbtn() {
 
-    var allLi = selectElement('content', 'li');
-
-    for(var i = 0; i < allLi.length; i++){
-        allLi[i].onclick = function () {
-            var ckId = this.dataset.id;
-            data.Lidata.forEach(function (value, index, attr) {
-                if(value.id == ckId){
-                    /*todo*/
-                    console.log(index)
-                }
-            })
-
+    var dList = document.getElementById('j_doing');
+    var fList = document.getElementById('j_finish');
+    var allBtn = selectElement('content', 'a');
+    for(var i = 0; i < allBtn.length; i++){
+        allBtn[i].onclick = function () {
+            deleteEle(parseInt(this.parentNode.dataset.id));
+            dList.innerHTML = '';
+            fList.innerHTML = '';
+            showList();
         }
     }
 
+
 }
+
+
+/*删除*/
+function deleteEle (num) {
+
+    var indexId = -1;
+
+    for(var i = 0; i < data.Lidata.length; i++){
+        if(data.Lidata[i].id == num){
+            indexId = i;
+        }
+    }
+
+    if(indexId != -1){
+        data.Lidata.splice(indexId, 1);
+    }
+
+    console.log(indexId,data.Lidata)
+}
+
+
 
 /*获取元素*/
 function selectElement(fid, cname) {
