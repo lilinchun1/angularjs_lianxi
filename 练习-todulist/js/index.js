@@ -4,6 +4,7 @@
 window.onload = function () {
     showList();
     addList();
+
 };
 
 
@@ -54,6 +55,8 @@ function showList() {
     cIn(arrA, dList);
     cIn(arrB, fList);
     click_xbtn();
+    changeStatus();
+    clearAll();
 }
 
 /*插入*/
@@ -128,8 +131,21 @@ function addList() {
     }
 }
 
-/*改变状态*/
+/*改变checkbox状态*/
 function changeStatus() {
+
+    var dList = document.getElementById('j_doing');
+    var fList = document.getElementById('j_finish');
+    var allLi = selectElement('content', 'li');
+
+    for(var i = 0; i < allLi.length; i++){
+        allLi[i].onclick = function () {
+            changeCk(this.dataset.id);
+            dList.innerHTML = '';
+            fList.innerHTML = '';
+            showList();
+        }
+    }
 
 }
 
@@ -167,10 +183,43 @@ function deleteEle (num) {
         data.Lidata.splice(indexId, 1);
     }
 
-    console.log(indexId,data.Lidata)
+
+}
+
+/*改变ckbox*/
+function changeCk (num) {
+
+    var indexId = -1;
+
+    for(var i = 0; i < data.Lidata.length; i++){
+        if(data.Lidata[i].id == num){
+            indexId = i;
+        }
+    }
+
+    if(indexId != -1){
+        data.Lidata[indexId].ckbox = !(data.Lidata[indexId].ckbox);
+    }
+
+
 }
 
 
+/*清除所有记录*/
+function clearAll(){
+
+    var dList = document.getElementById('j_doing');
+    var fList = document.getElementById('j_finish');
+    var abtn = document.getElementById('j_clearAll');
+    abtn.onclick = function () {
+        data.Lidata = [];
+        dList.innerHTML = '';
+        fList.innerHTML = '';
+        showList();
+    };
+
+
+}
 
 /*获取元素*/
 function selectElement(fid, cname) {
