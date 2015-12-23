@@ -18,7 +18,7 @@
         <h2>正在进行</h2>
         <ul id="j_doing">
             <li ng-repeat="v in arrA | orderBy: '-id'" data-id="{{v.id}}">
-                <input type="checkbox" name="" ng-checked="{{v.ckbox}}">
+                <input type="checkbox" name="" ng-checked="{{v.ckbox}}" ng-click="changeCk(v.id)">
                 <p>{{v.txt}}</p>
                 <a ng-click="deleteLine(v.id)">X</a>
             </li>
@@ -41,7 +41,7 @@
         <h2>已经完成</h2>
         <ul id="j_finish">
             <li ng-repeat="v in arrB | orderBy: '-id'" data-id="{{v.id}}">
-                <input type="checkbox" name="" ng-checked="{{v.ckbox}}">
+                <input type="checkbox" name="" ng-checked="{{v.ckbox}}" ng-click="changeCk(v.id)">
                 <p>{{v.txt}}</p>
                 <a ng-click="deleteLine(v.id)">X</a>
             </li>
@@ -63,6 +63,9 @@
         </ul>
     </section>
     <section>
+        <span class="totoal">
+            未完成:{{arrA.length}} / 完成:{{arrB.length}}
+        </span>
         <button class="clearBtn" id="j_clearAll">清除所有记录</button>
     </section>
 </div>

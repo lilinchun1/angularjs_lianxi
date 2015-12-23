@@ -133,9 +133,25 @@ apps.controller('ctrl-1', [
 
         }
 
+        /*改变状态*/
 
+        $scope.changeCk = function (n) {
 
+            var indexId = -1;
+            for(var i = 0; i <arrAll.length; i++){
 
+                if(arrAll[i].id == n){
+                    indexId = i;
+                }
+
+            }
+
+            if(indexId != -1){
+                arrAll[indexId].ckbox = !(arrAll[indexId].ckbox);
+                showList();
+            }
+
+        };
 
 
     }
