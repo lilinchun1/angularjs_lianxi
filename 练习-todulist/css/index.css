@@ -68,6 +68,7 @@ section{
     margin-bottom: 0;
 }
 #content p{
+    padding-left: 10px;
     display: inline-block;
 }
 #content li a{

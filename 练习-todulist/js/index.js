@@ -77,10 +77,22 @@ function cIn(attr, cont) {
         aCkbox.checked = attr[i]['ckbox'];
         aLi.appendChild(aCkbox);
         var aP = document.createElement('p');
-        aP.innerText = attr[i]['txt'];
+        if(typeof aP.textContent == 'string'){
+            aP.textContent = attr[i]['txt'];
+
+        }else{
+            aP.innerText = attr[i]['txt'];
+        }
         aLi.appendChild(aP);
         var aBtn = document.createElement('a');
-        aBtn.innerText = 'x';
+
+        if(typeof aP.textContent == 'string'){
+            aBtn.textContent = 'x';
+
+        }else{
+            aBtn.innerText = 'x';
+
+        }
         aLi.appendChild(aBtn);
         cont.appendChild(aLi);
 
