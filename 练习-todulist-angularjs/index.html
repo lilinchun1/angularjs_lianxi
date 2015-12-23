@@ -17,8 +17,8 @@
     <section class="doing" >
         <h2>正在进行</h2>
         <ul id="j_doing">
-            <li ng-repeat="v in arrA | orderBy: '-id'" data-id="{{v.id}}">
-                <input type="checkbox" name="" ng-checked="{{v.ckbox}}" ng-click="changeCk(v.id)">
+            <li ng-repeat="v in arrA | orderBy: '-id'" data-id="{{v.id}}" ng-click="changeCk(v.id)">
+                <input type="checkbox" name="" ng-checked="{{v.ckbox}}">
                 <p>{{v.txt}}</p>
                 <a ng-click="deleteLine(v.id)">X</a>
             </li>
@@ -40,8 +40,8 @@
     <section class="finish" >
         <h2>已经完成</h2>
         <ul id="j_finish">
-            <li ng-repeat="v in arrB | orderBy: '-id'" data-id="{{v.id}}">
-                <input type="checkbox" name="" ng-checked="{{v.ckbox}}" ng-click="changeCk(v.id)">
+            <li ng-repeat="v in arrB | orderBy: '-id'" data-id="{{v.id}}" ng-click="changeCk(v.id)">
+                <input type="checkbox" name="" ng-checked="{{v.ckbox}}">
                 <p>{{v.txt}}</p>
                 <a ng-click="deleteLine(v.id)">X</a>
             </li>
