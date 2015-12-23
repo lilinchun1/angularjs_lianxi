@@ -78,10 +78,11 @@ apps.controller('ctrl-1', [
             $scope.arrB = $finish.arr(arrAll);
         }
 
+        /*初始化*/
         showList();
 
-        $scope.txt = '';
         /*点击添加条目*/
+        $scope.txt = '';
         $scope.addClick = function () {
 
             if($scope.txt != ''){
