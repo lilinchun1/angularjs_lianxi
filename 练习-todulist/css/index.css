@@ -82,3 +82,10 @@ section{
 .doing li{
     background-color: #ffffff;
 }
+
+.clearBtn{
+    float: right;
+    margin-top: 25px;
+    width: 140px;
+    height: 26px;
+}

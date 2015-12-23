@@ -134,16 +134,12 @@ function addList() {
 /*改变checkbox状态*/
 function changeStatus() {
 
-    var dList = document.getElementById('j_doing');
-    var fList = document.getElementById('j_finish');
     var allLi = selectElement('content', 'li');
 
     for(var i = 0; i < allLi.length; i++){
         allLi[i].onclick = function () {
             changeCk(this.dataset.id);
-            dList.innerHTML = '';
-            fList.innerHTML = '';
-            showList();
+            resetList();
         }
     }
 
@@ -152,15 +148,11 @@ function changeStatus() {
 /*点击x按钮删除li*/
 function click_xbtn() {
 
-    var dList = document.getElementById('j_doing');
-    var fList = document.getElementById('j_finish');
     var allBtn = selectElement('content', 'a');
     for(var i = 0; i < allBtn.length; i++){
         allBtn[i].onclick = function () {
             deleteEle(parseInt(this.parentNode.dataset.id));
-            dList.innerHTML = '';
-            fList.innerHTML = '';
-            showList();
+            resetList();
         }
     }
 
@@ -205,19 +197,25 @@ function changeCk (num) {
 }
 
 
-/*清除所有记录*/
+/*点击按钮清除所有记录*/
 function clearAll(){
 
-    var dList = document.getElementById('j_doing');
-    var fList = document.getElementById('j_finish');
     var abtn = document.getElementById('j_clearAll');
     abtn.onclick = function () {
         data.Lidata = [];
-        dList.innerHTML = '';
-        fList.innerHTML = '';
-        showList();
+        resetList();
     };
 
+}
+
+/*清空列表*/
+function resetList(){
+
+    var fList = document.getElementById('j_finish');
+    var dList = document.getElementById('j_doing');
+    dList.innerHTML = '';
+    fList.innerHTML = '';
+    showList();
 
 }
 
