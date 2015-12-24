@@ -155,5 +155,10 @@ apps.controller('ctrl-1', [
         };
 
 
+        $scope.delAll = function () {
+            arrAll = [];
+            showList();
+        }
+
     }
 ]);
