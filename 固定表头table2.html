@@ -18,7 +18,9 @@
         .table-head th {
             position: relative;
         }
-
+        .table-head div{
+            color: transparent;
+        }
         .table-head div::before {
             content: attr(title);
             position: fixed;
@@ -28,6 +30,26 @@
             line-height: 37px;
             color: #000;
             text-indent: 8px;
+        }
+
+        .table-head .table-sort-up::after {
+            content: '\e113';
+            position: fixed;
+            z-index: 2;
+            margin-left: 10px;
+            font-family: 'Glyphicons Halflings';
+            font-size: 12px;
+            color: #fff;
+        }
+
+        .table-head .table-sort-down::after {
+            content: '\e114';
+            position: fixed;
+            z-index: 2;
+            margin-left: 10px;
+            font-family: 'Glyphicons Halflings';
+            font-size: 12px;
+            color: #fff;
         }
 
         .scoll-line {
@@ -50,26 +72,26 @@
     <table class="table table-bordered table-hover">
         <thead class="table-head">
         <tr>
-            <th>
+            <th onclick="console.log(1)">
                 <div title="#">&nbsp;</div>
             </th>
-            <th>
-                <div title="FirstName">&nbsp;</div>
+            <th onclick="console.log(2)">
+                <div title="FirstName" class="table-sort-up">FirstName</div>
             </th>
-            <th>
-                <div title="LastName">&nbsp;</div>
+            <th onclick="console.log(3)">
+                <div title="LastName" class="table-sort-down">LastName</div>
             </th>
-            <th>
-                <div title="Username1">&nbsp;</div>
+            <th onclick="console.log(4)">
+                <div title="Username1">Username1</div>
             </th>
-            <th>
-                <div title="Username2">&nbsp;</div>
+            <th onclick="console.log(5)">
+                <div title="Username2">Username2</div>
             </th>
-            <th>
-                <div title="Username3">&nbsp;</div>
+            <th onclick="console.log(6)">
+                <div title="Username3">Username3</div>
             </th>
-            <th>
-                <div title="Username4">&nbsp;</div>
+            <th onclick="console.log(7)">
+                <div title="Username4">Username4</div>
             </th>
         </tr>
         </thead>
